@@ -22,16 +22,37 @@ syntax on
 filetype on
 let mapleader = 'f'
 let maplocalleader = mapleader
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap ; :
+nn <leader>ev :vsplit $MYVIMRC<cr>
+nn <leader>sv :source $MYVIMRC<cr>
+nn ; :
 
 "Insert mode autocompletes
-inoremap <S-Tab> <Esc> 
-inoremap {<CR> {<CR>}<Esc>ko<Tab>
-inoremap {<Space> {<Space><Space>}<Esc>hi
-inoremap [ []<Esc>i
-
+ino <S-Tab> <Esc> 
+"{}
+ino {<CR>       {<CR>}<Esc>ko<Tab>
+ino {<Space>    {<Space><Space>}<Left><Left>
+ino {{          {
+ino {}          {}
+"[]
+ino [           []<Left>
+ino [[          [
+ino []          []
+"()
+ino (           ()<Left>
+ino ((          (
+ino ()          ()
+"<>
+ino <           <><Left>
+ino <<          <
+ino <>          <>
+"''
+ino '           ''<Left>
+ino ''          '
+"""
+ino "           ""<Left>
+ino ""          "
+"HTML <>
+iabbrev </      </<C-X><C-O>
 
 augroup filetypes
 	au BufNewFile,BufRead *.pl set filetype=perl
@@ -52,18 +73,16 @@ augroup END
 
 "au BufNewFile,BufRead * startinsert
 augroup commentgroup
-	au Filetype c           nnoremap <buffer> <localleader>c I//<esc>
-	au Filetype cpp         nnoremap <buffer> <localleader>c I//<esc>
-	au Filetype csharp      nnoremap <buffer> <localleader>c I//<esc>
-	au Filetype java        nnoremap <buffer> <localleader>c I//<esc>
-	au Filetype javascript  nnoremap <buffer> <localleader>c I//<esc>
-	au Filetype php         nnoremap <buffer> <localleader>c I//<esc>
-	au Filetype python      nnoremap <buffer> <localleader>c I#<esc>
-	au Filetype perl        nnoremap <buffer> <localleader>c I#<esc>
-	au Filetype perl        nnoremap <buffer> <localleader>c I#<esc>
-	au Filetype sh          nnoremap <buffer> <localleader>c I#<esc>  
-	au Filetype vim         nnoremap <buffer> <localleader>c I"<esc>  
-
+	au Filetype c           nn <buffer> <localleader>c I//<esc>
+	au Filetype cpp         nn <buffer> <localleader>c I//<esc>
+	au Filetype csharp      nn <buffer> <localleader>c I//<esc>
+	au Filetype java        nn <buffer> <localleader>c I//<esc>
+	au Filetype javascript  nn <buffer> <localleader>c I//<esc>
+	au Filetype php         nn <buffer> <localleader>c I//<esc>
+	au Filetype python      nn <buffer> <localleader>c I#<esc>
+	au Filetype perl        nn <buffer> <localleader>c I#<esc>
+	au Filetype sh          nn <buffer> <localleader>c I#<esc>  
+	au Filetype vim         nn <buffer> <localleader>c I"<esc>  
 augroup END
 
 "autocorrect
