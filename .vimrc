@@ -21,11 +21,18 @@ set wildignore=*.swp,*.bak,*pyc,*.class
 syntax on
 filetype on
 let mapleader = 'f'
+let maplocalleader = mapleader
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader> :
+nnoremap ; :
 
+"Insert mode autocompletes
 inoremap <S-Tab> <Esc> 
+inoremap {<CR> {<CR>}<Esc>ko<Tab>
+inoremap {<Space> {<Space><Space>}<Esc>hi
+inoremap [ []<Esc>i
+
+
 augroup filetypes
 	au BufNewFile,BufRead *.pl set filetype=perl
 	au BufNewFile,BufRead *.txt set filetype=text
@@ -33,6 +40,8 @@ augroup filetypes
 	au BufNewFile,BufRead *.rtf set filetype=text
 augroup END
 set statusline=%f\ -\ Filetype:\ %y
+
+"Echo >^.^< only when Vim is started, not whenever .vimrc is loaded
 if exists("vimstarted")
         echo ">^.^<"
 endif
@@ -43,12 +52,18 @@ augroup END
 
 "au BufNewFile,BufRead * startinsert
 augroup commentgroup
-	au Filetype c nnoremap <buffer> <localleader>c I//<esc>
-	au Filetype c nnoremap <buffer> <localleader>cpp I//<esc>
-	au Filetype c nnoremap <buffer> <localleader>csharp I//<esc>
-	au Filetype c nnoremap <buffer> <localleader>javascript I//<esc>
-	au Filetype c nnoremap <buffer> <localleader>python I#<esc>
-	au Filetype c nnoremap <buffer> <localleader>perl I#<esc>
+	au Filetype c           nnoremap <buffer> <localleader>c I//<esc>
+	au Filetype cpp         nnoremap <buffer> <localleader>c I//<esc>
+	au Filetype csharp      nnoremap <buffer> <localleader>c I//<esc>
+	au Filetype java        nnoremap <buffer> <localleader>c I//<esc>
+	au Filetype javascript  nnoremap <buffer> <localleader>c I//<esc>
+	au Filetype php         nnoremap <buffer> <localleader>c I//<esc>
+	au Filetype python      nnoremap <buffer> <localleader>c I#<esc>
+	au Filetype perl        nnoremap <buffer> <localleader>c I#<esc>
+	au Filetype perl        nnoremap <buffer> <localleader>c I#<esc>
+	au Filetype sh          nnoremap <buffer> <localleader>c I#<esc>  
+	au Filetype vim         nnoremap <buffer> <localleader>c I"<esc>  
+
 augroup END
 
 "autocorrect
