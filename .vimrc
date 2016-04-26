@@ -63,7 +63,6 @@ iabbrev getElementbyId      getElementById
 iabbrev getElementByid      getElementById
 
 
-
 augroup filetypes
 	au BufNewFile,BufRead *.pl set filetype=perl
 	au BufNewFile,BufRead *.txt set filetype=text
