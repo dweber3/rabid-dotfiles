@@ -6,16 +6,16 @@ endif
 
 call plug#begin()
   Plug 'tpope/vim-sensible'
+  Plug 'powerline/fonts', { 'do':'./install.sh' }
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
   Plug 'junegunn/vim-easy-align'
-  Plug 'sheerun/vim-wombat-scheme'
   Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-  "let g:eclim_install = 'java -jar eclim_'
-  "Plug 'ervandew/eclim', { 'do': g:eclim_install }
+  Plug 'vim-syntastic/syntastic'
+  Plug 'baskerville/bubblegum'
 call plug#end()
 
 "standard vim options
@@ -134,7 +134,8 @@ augroup END
   nmap ga <Plug>(EasyAlign)
 
 "NERDTree
-  autocmd vimenter * NERDTree
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-colorscheme wombat
+"Colorschemes
+  let g:airline_theme='bubblegum'
+  colorscheme bubblegum-256-dark
